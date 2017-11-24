@@ -3,7 +3,7 @@ var browserSync = require('browser-sync').create();
 
 gulp.task('default', ['copy']);
 
-gulp.task('start', function () {
+gulp.task('serve', function () {
     browserSync.init({
         server: {
             baseDir: 'src/'
@@ -26,7 +26,7 @@ gulp.task('copy', function () {
 
 var createPath = {
     bower_components: function (name) {
-        return 'bower_components/' + name;
+        return 'node_modules/' + name;
     },
     vendor: function (name) {
         return 'src/vendor/' + name;

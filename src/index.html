@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head ng-app="app">
+<html lang="zh-CN" ng-app="app">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,8 +9,27 @@
     <script src="vendor/angular/angular.js"></script>
 </head>
 <body>
-<script>
+<div ng-controller="appController as ctrl">
 
+</div>
+<script>
+    angular
+        .module('app', [])
+        .controller('appController', function () {
+            var person = {
+                name: 'mt'
+            };
+            var child = {
+                name: 'vinci',
+                age: 1.5
+            };
+            var tmpChild = {};
+            angular.copy(child, tmpChild);
+            angular.extend(child, person);
+            angular.extend(child, tmpChild);
+            console.log(child);
+            console.log(person);
+        });
 </script>
 </body>
 </html>
