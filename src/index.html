@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ng-app="app">
+<html lang="zh-CN" ng-app="root">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,29 +7,30 @@
     <title>Angular 学习</title>
 
     <script src="vendor/angular/angular.js"></script>
+    <script src="scripts/async-module.js"></script>
 </head>
 <body>
-<div ng-controller="appController as ctrl">
-
+<div ng-controller="rootController as ctrl">
+    <div ng-controller="userController">
+        {{name}}
+    </div>
 </div>
 <script>
-    angular
-        .module('app', [])
-        .controller('appController', function () {
-            var person = {
-                name: 'mt'
-            };
-            var child = {
-                name: 'vinci',
-                age: 1.5
-            };
-            var tmpChild = {};
-            angular.copy(child, tmpChild);
-            angular.extend(child, person);
-            angular.extend(child, tmpChild);
-            console.log(child);
-            console.log(person);
+    var root = angular
+        .module('root', [])
+        .config(function ($provide) {
+        })
+        .controller('rootController', function () {
+
         });
+
+    angular
+        .module('user', [])
+        .controller('userController', function ($scope) {
+            $scope.name = 'Vinci';
+        });
+
+    root.requires.push('user');
 </script>
 </body>
 </html>
